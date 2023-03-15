@@ -1,4 +1,4 @@
-from app import models, note
+from app import models, user
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from .database import engine
@@ -20,9 +20,9 @@ app.add_middleware(
 )
 
 
-app.include_router(note.router, tags=['Notes'], prefix='/api/notes')
+app.include_router(user.router, tags=['Users'], prefix='/api/users')
 
 
 @app.get("/api/healthchecker")
 def root():
-    return {"message": "Welcome to FastAPI with SQLAlchemy"}
+    return {"message": "The API is LIVE!!"}

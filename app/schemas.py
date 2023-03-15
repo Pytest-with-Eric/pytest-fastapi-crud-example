@@ -3,12 +3,12 @@ from typing import List
 from pydantic import BaseModel
 
 
-class NoteBaseSchema(BaseModel):
+class UserBaseSchema(BaseModel):
     id: str | None = None
-    title: str
-    content: str
-    category: str | None = None
-    published: bool = False
+    first_name: str
+    last_name: str
+    address: str | None = None
+    activated: bool = False
     createdAt: datetime | None = None
     updatedAt: datetime | None = None
 
@@ -18,7 +18,7 @@ class NoteBaseSchema(BaseModel):
         arbitrary_types_allowed = True
 
 
-class ListNoteResponse(BaseModel):
+class ListUserResponse(BaseModel):
     status: str
     results: int
-    notes: List[NoteBaseSchema]
+    users: List[UserBaseSchema]

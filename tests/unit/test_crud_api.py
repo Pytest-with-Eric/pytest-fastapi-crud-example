@@ -30,7 +30,6 @@ def test_create_note():
           "updatedAt": "2023-03-14T09:11:48.620Z"
         }
     response = client.post("/api/notes/", json=sample_payload)
-    print(response.json())
     assert response.status_code == 201
     assert response.json() == {'status': 'success', 'note': {'published': False, 'title': 'string', 'content': 'string', 'createdAt': '2023-03-14T09:11:48.620000', 'id': note_id, 'category': 'string', 'updatedAt': '2023-03-14T09:11:48.620000'}}
 
