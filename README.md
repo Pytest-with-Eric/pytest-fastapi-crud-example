@@ -1,28 +1,21 @@
-# Build a CRUD App with FastAPI and SQLAlchemy
+# PyTest REST API Example
 
-In this article, I'll provide you with a simple and straightforward guide on how you can build a CRUD app with FastAPI and SQLAlchemy. The FastAPI app will run on a Starlette web server, use Pydantic for data validation, and store data in an SQLite database.
+This repo contains the sample code for the article - [Building and Testing FastAPI CRUD APIs with Pytest: A Step-By-Step Guide](https://pytest-with-eric.com/pytest-advanced/python-fastapi-testing/)
 
-![Build a CRUD App with FastAPI and SQLAlchemy](https://codevoweb.com/wp-content/uploads/2022/11/Build-a-CRUD-App-with-FastAPI-and-SQLAlchemy.png)
+This project explains how to Build and Test A CRUD Rest API using FastAPI, SQLite (via SQLAlchemy) and Pytest.
+# Requirements
+* Python (3.10.9)
 
-## Topics Covered
+Please install the dependencies via the `requirements.txt` file using 
+```commandline
+pip install -r requirements.txt
+```
+If you don't have Pip installed please follow instructions online on how to do it.
 
-- Run the SQLAlchemy FastAPI App Locally
-- Run the Frontend App Locally
-- Setup FastAPI and Run the HTTP Server
-- Designing the CRUD API
-- Setup SQLAlchemy with SQLite
-- Setup SQLAlchemy with PostgreSQL
-- Create Database Model with SQLAlchemy
-    - Database Model for SQLite Database
-    - Database Model for Postgres Database
-- Create Validation Schemas with Pydantic
-- Define the Path Operation Functions
-    - Get All Records
-    - Create a Record
-    - Update a Record
-    - Retrieve a Single Record
-    - Delete a Single Record
-- Connect the API Router to the App
+# How To Run the Unit Tests
+To run the Unit Tests, from the root of the repo run
+```commandline
+pytest tests/unit/test_crud_api.py -v -s
+```
 
-Read the entire article here: [https://codevoweb.com/build-a-crud-app-with-fastapi-and-sqlalchemy](https://codevoweb.com/build-a-crud-app-with-fastapi-and-sqlalchemy)
-
+If you have any questions about the project please raise an Issue on GitHub. 
