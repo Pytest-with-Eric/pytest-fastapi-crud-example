@@ -1,12 +1,14 @@
 from datetime import datetime
 from typing import List
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 
 class UserBaseSchema(BaseModel):
     id: str | None = None
-    first_name: str
-    last_name: str
+    first_name: str = Field(
+        ..., description="The first name of the user", example="John"
+    )
+    last_name: str = Field(..., description="The last name of the user", example="Doe")
     address: str | None = None
     activated: bool = False
     createdAt: datetime | None = None
