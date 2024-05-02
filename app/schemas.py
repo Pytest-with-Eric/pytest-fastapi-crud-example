@@ -1,10 +1,13 @@
+from enum import Enum
 from datetime import datetime
 from typing import List
 from pydantic import BaseModel, Field
+from uuid import uuid4, UUID
 
 
 class UserBaseSchema(BaseModel):
-    id: str | None = None
+
+    id: UUID | None = None
     first_name: str = Field(
         ..., description="The first name of the user", example="John"
     )
@@ -24,3 +27,13 @@ class ListUserResponse(BaseModel):
     status: str
     results: int
     users: List[UserBaseSchema]
+
+
+class Status(Enum):
+    Success = "Success"
+    Failed = "Failed"
+
+
+class CreateUserResponse(BaseModel):
+    Status: Status
+    User: UserBaseSchema
