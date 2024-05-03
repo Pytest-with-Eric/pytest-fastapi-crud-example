@@ -23,17 +23,27 @@ class UserBaseSchema(BaseModel):
         arbitrary_types_allowed = True
 
 
-class ListUserResponse(BaseModel):
-    status: str
-    results: int
-    users: List[UserBaseSchema]
-
-
 class Status(Enum):
     Success = "Success"
     Failed = "Failed"
 
 
-class CreateUserResponse(BaseModel):
+class UserResponse(BaseModel):
     Status: Status
     User: UserBaseSchema
+
+
+class GetUserResponse(BaseModel):
+    Status: Status
+    User: UserBaseSchema
+
+
+class ListUserResponse(BaseModel):
+    status: Status
+    results: int
+    users: List[UserBaseSchema]
+
+
+class DeleteUserResponse(BaseModel):
+    Status: Status
+    Message: str
