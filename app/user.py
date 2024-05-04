@@ -78,7 +78,7 @@ def update_user(
     if not db_user:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail=f"No User with this id: {userId} found",
+            detail=f"No User with this id: `{userId}` found",
         )
 
     try:
@@ -104,7 +104,7 @@ def update_user(
 
 @router.delete(
     "/{userId}",
-    status_code=status.HTTP_200_OK,
+    status_code=status.HTTP_202_ACCEPTED,
     response_model=schemas.DeleteUserResponse,
 )
 def delete_user(userId: str, db: Session = Depends(get_db)):
@@ -114,7 +114,7 @@ def delete_user(userId: str, db: Session = Depends(get_db)):
         if not user:
             raise HTTPException(
                 status_code=status.HTTP_404_NOT_FOUND,
-                detail=f"No user with this id: {userId} found",
+                detail=f"No User with this id: `{userId}` found",
             )
         user_query.delete(synchronize_session=False)
         db.commit()

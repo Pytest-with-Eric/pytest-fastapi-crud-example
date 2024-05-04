@@ -1,14 +1,14 @@
 from app.database import Base
 from sqlalchemy import TIMESTAMP, Column, String, Boolean, Index
 from sqlalchemy.sql import func
-from fastapi_utils.guid_type import GUID, GUID_DEFAULT_SQLITE
-
+from sqlalchemy_utils import UUIDType
+import uuid
 
 class User(Base):
     __tablename__ = "users"
 
     # Primary key and GUID type
-    id = Column(GUID, primary_key=True, default=GUID_DEFAULT_SQLITE)
+    id = Column(UUIDType(binary=False), primary_key=True, default=uuid.uuid4)
 
     # String types with appropriate non-null constraints
     first_name = Column(
