@@ -81,7 +81,6 @@ def test_get_user_not_found(test_client, user_id):
 def test_create_user_wrong_payload(test_client):
     response = test_client.post("/api/users/", json={})
     assert response.status_code == 422
-    response_json = response.json()
 
 
 def test_update_user_wrong_payload(test_client, user_id, user_payload_updated):
@@ -101,3 +100,10 @@ def test_update_user_wrong_payload(test_client, user_id, user_payload_updated):
             }
         ]
     }
+
+
+def test_update_user_doesnt_exist(test_client, user_id, user_payload_updated):
+    response = test_client.patch(f"/api/users/{user_id}", json=user_payload_updated)
+    assert response.status_code == 404
+    response_json = response.json()
+    assert response_json["detail"] == f"No User with this id: `{user_id}` found"
