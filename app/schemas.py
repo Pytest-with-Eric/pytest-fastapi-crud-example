@@ -2,7 +2,7 @@ from enum import Enum
 from datetime import datetime
 from typing import List
 from pydantic import BaseModel, Field
-from uuid import uuid4, UUID
+from uuid import UUID
 
 
 class UserBaseSchema(BaseModel):

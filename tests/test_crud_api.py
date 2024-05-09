@@ -65,10 +65,7 @@ def test_create_delete_user(test_client, user_payload):
     response = test_client.get(f"/api/users/{user_payload['id']}")
     assert response.status_code == 404
     response_json = response.json()
-    assert (
-        response_json["detail"]
-        == f"No User with this id: `{user_payload['id']}` found",
-    )
+    assert response_json["detail"] == f"No User with this id: `{user_payload['id']}` found"
 
 
 def test_get_user_not_found(test_client, user_id):

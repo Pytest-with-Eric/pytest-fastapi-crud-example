@@ -1,7 +1,7 @@
 [tool.poetry]
-name = "pytest-fastapi-crud-example"
+name = "user-service-example"
 version = "0.1.0"
-description = "Example of testing a FastAPI CRUD API in Pytest"
+description = "A simple user service example"
 authors = ["ericsalesdeandrade <sdaeric19@gmail.com>"]
 readme = "README.md"
 

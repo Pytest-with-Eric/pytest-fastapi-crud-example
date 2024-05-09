@@ -1,7 +1,7 @@
-import app.schemas as schemas, app.models as models
+import app.schemas as schemas
+import app.models as models
 from sqlalchemy.orm import Session
 from sqlalchemy.exc import IntegrityError
-from pydantic import ValidationError
 from fastapi import Depends, HTTPException, status, APIRouter
 from app.database import get_db
 
@@ -14,7 +14,7 @@ router = APIRouter()
 def create_user(payload: schemas.UserBaseSchema, db: Session = Depends(get_db)):
     try:
         # Create a new user instance from the payload
-        new_user = models.User(**payload.dict())
+        new_user = models.User(**payload.model_dump())
         db.add(new_user)
         db.commit()
         db.refresh(new_user)
@@ -55,7 +55,7 @@ def get_user(userId: str, db: Session = Depends(get_db)):
 
     try:
         return schemas.GetUserResponse(
-            Status=schemas.Status.Success, User=schemas.UserBaseSchema.from_orm(db_user)
+            Status=schemas.Status.Success, User=schemas.UserBaseSchema.model_validate(db_user)
         )
     except Exception as e:
         raise HTTPException(
@@ -86,7 +86,7 @@ def update_user(
         user_query.update(update_data, synchronize_session=False)
         db.commit()
         db.refresh(db_user)
-        user_schema = schemas.UserBaseSchema.from_orm(db_user)
+        user_schema = schemas.UserBaseSchema.model_validate(db_user)
         return schemas.UserResponse(Status=schemas.Status.Success, User=user_schema)
     except IntegrityError as e:
         db.rollback()

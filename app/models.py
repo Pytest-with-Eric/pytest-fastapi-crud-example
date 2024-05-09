@@ -1,5 +1,5 @@
 from app.database import Base
-from sqlalchemy import TIMESTAMP, Column, String, Boolean, Index
+from sqlalchemy import TIMESTAMP, Column, String, Boolean
 from sqlalchemy.sql import func
 from sqlalchemy_utils import UUIDType
 import uuid
